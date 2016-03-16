@@ -1,0 +1,23 @@
+{
+  "name": "rookieCMS",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Jannik Fischer <jgrausen@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "http://jannikgrausen.dk",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "angular": "^1.5.0"
+  }
+}
