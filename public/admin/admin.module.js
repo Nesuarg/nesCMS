@@ -2,7 +2,7 @@
   "use strict";
   
   angular
-    .module("admin", ["admin.dashboard", "admin.users", "admin.content", "admin.contentItem", "ngResource", "ngRoute"])
+    .module("admin", ["admin.dashboard", "admin.content", "admin.users", "ngResource", "ngRoute"])
     .config(function($routeProvider){
         	$routeProvider
         		.when('/users/', {
