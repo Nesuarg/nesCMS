@@ -9,13 +9,13 @@ var auth = function(req, res, next){
     else next(); 
 };
 
-router.get('/users', auth, function(req, res){
+/*router.get('/users', auth, function(req, res){
   res.send([{name: "user1"}, {name: "user2"}]);
 });
 
 router.get('/content', auth, function(req, res){
   res.send([{name: "user1"}, {name: "user2"}]);
-});
+});*/
 //==================================================================
 
 //==================================================================
@@ -27,6 +27,7 @@ router.get('/loggedin', function(req, res) {
 // route to log in
 router.post('/login', passport.authenticate('local'), function(req, res) {
   res.send(req.user);
+  console.log('logged in yo');
 });
 
 // route to log out
