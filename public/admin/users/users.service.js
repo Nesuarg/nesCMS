@@ -3,13 +3,10 @@
   
   function usersService($http) {
     
-    var getVisitors = function(){
-      
-    }
-    
-    return {
-      getVisitors: getVisitors
-    }
+    http.get('/users').success(function(users){
+    for (var i in users)
+      $scope.users.push(users[i]);
+  });
     
   }
 

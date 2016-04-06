@@ -16,18 +16,12 @@ db.on('error', console.error);
 db.once('open', function (callback) {
     console.log('MongoDB connection established to ' + dbname);
 });
-
+var admin = require('./routes/admin');
 var users = require('./routes/users');
 var content = require('./routes/content');
+var auth = require('./routes/auth');
 
 //flyttes til auth config
-
-var auth = function (req, res, next) {
-    if (!req.isAuthenticated())
-        res.send(401);
-    else
-        next();
-};
 
 
 var app = express();
@@ -55,8 +49,10 @@ app.use(passport.session());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/api/admin', admin);
 app.use('/api/admin/users', users);
-app.use('/api/admin/content', content);
+app.use('/api/content', content);
+app.use('/api/auth', auth);
 
 
 // PassportJS Configuration

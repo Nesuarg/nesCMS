@@ -3,12 +3,12 @@
   "use strict";
   
   angular
-    .module("admin.content", [])
-    .controller("contentController", contentController);
-  
-  function contentController($scope) {
-    $scope.visitors = [];
-  }
+    .module("adminApp")
+    .controller("contentController", function () {
+      this.awesome = ["hello"]
+
+
+});
   
   
 }())

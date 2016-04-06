@@ -3,8 +3,8 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var User = require('../models/user');
 
-
 router.get('/:id', function(req, res, next) {
+    
   User.findOne({_id: req.params.id}, function(err, data) {
     res.json(data);
   });

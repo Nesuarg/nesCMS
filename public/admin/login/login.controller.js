@@ -7,7 +7,7 @@
   }
 
   angular
-    .module("admin.login")
+    .module("adminApp")
     .controller("loginController", loginController);
   
 }())

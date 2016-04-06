@@ -6,7 +6,7 @@
     .controller("usersController", usersController);
   
   function usersController($scope) {
-    $scope.visitors = [];
+    $scope.users = [];
   }
   
   

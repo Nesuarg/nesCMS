@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport')
+var Account = require('../models/user');
 
-
-
-var auth = function(req, res, next){ 
-    if (!req.isAuthenticated()) res.send(401); 
-    else next(); 
+var auth = function (req, res, next) {
+    if (!req.isAuthenticated())
+        res.send(401);
+    else
+        next();
 };
 
 /*router.get('/users', auth, function(req, res){
@@ -20,6 +21,7 @@ router.get('/content', auth, function(req, res){
 
 //==================================================================
 // route to test if the user is logged in or not
+
 router.get('/loggedin', function(req, res) {
   res.send(req.isAuthenticated() ? req.user : '0');
 });

@@ -14,7 +14,7 @@
   }
 
   angular
-    .module("admin.content")
+    .module("admin")
     .factory("contentService", contentService);
   
 }())

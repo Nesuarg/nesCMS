@@ -3,18 +3,15 @@
   
   function dashboardService($http) {
     
-    var getVisitors = function(){
-      
-    }
-    
-    return {
-      getVisitors: getVisitors
-    }
+   http.get('/users').success(function(users){
+    for (var i in users)
+      $scope.users.push(users[i]);
+  });
     
   }
 
   angular
-    .module("admin.dashboard")
+    .module("admin")
     .factory("dashboardService", dashboardService);
   
 }())
