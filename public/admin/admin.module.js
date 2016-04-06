@@ -21,6 +21,10 @@
         			templateUrl: './content/content.view.html',
         			controller: 'contentController'
         		})
+                .when('/login/',{
+                    templateUrl: './login/login.view.html',
+                    controller: 'loginController'
+            })
         		.when("/", {
         			templateUrl: './dashboard/dashboard.view.html',
         			controller: 'dashboardController'
