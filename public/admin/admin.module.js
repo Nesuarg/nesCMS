@@ -28,7 +28,7 @@
             });
 
 
-        })
+        });
     /*.directive('validateMatch', function () {
             return {
                 require: 'ngModel'

@@ -3,15 +3,16 @@
 <head>
     <title>NesCMS</title>
     <link rel="stylesheet" href="../libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../libs/animate.css/animate.css">
     <link rel="stylesheet" href="../stylesheets/style.css">
 </head>
 
 <body ng-app="adminApp">
-    <div class="container">
+    <div class="container" ng-cloak>
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
 
-
+ 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
@@ -27,6 +28,9 @@
             <!-- /.container-fluid -->
         </nav>
         <div ui-view></div>
+        
+        <div class="alert alert-{{alert.type}} animated my-alert" ng-class="{'bounce': alert.show, 'bounce': !alert.show, 'alert-hidden': !alert.hasBeenShown}"><strong>{{alert.title}}</strong>{{alert.message}}</div>
+    
     </div>
 
 
@@ -36,6 +40,7 @@
     <script src="../libs/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="../libs/jquery/dist/jquery.min.js"></script>
     <script src="../libs/bootstrap/js/modal.js"></script>
+    <script src="../libs/bootstrap/dist/js/bootstrap.js"></script>
     <!-- module -->
     <script src="admin.module.js"></script>
     <script src="directives/validateMatch.js"></script>
@@ -48,6 +53,7 @@
     <script src="users/users.controller.js"></script>
     <!-- Register -->
     <script src="register/register.controller.js"></script>
+    <script src="register/register.service.js"></script>
 </body>
 
 </html>
