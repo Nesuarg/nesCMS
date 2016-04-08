@@ -5,25 +5,34 @@
 
     angular
         .module('adminApp')
-        .controller('registerCtrl', function($scope, $http, alert, registerService) {
-            
-        $scope.submit = function () {
-                
-                var url = '/';
-                var user = {};
-                $http.post(url, user)
-                    .success(function (res) {
-                        console.log("Yey, champ");
-                    })
-                    .error(function (err) {
-                        alert('warning', 'hih, yops?', 'try again');
-                    });
-        
+        .controller('registerCtrl', function ($scope, alert) {
+
+            $scope.submit = function () {
+
+
+                function alert($scope, $timeout) {
+
+                    var alertTimeout;
+                    return function (type, title, message, timeout) {
+                        $scope.alert = {
+                            hasBeenShown: true
+                            , show: true
+                            , type: type
+                            , title: title
+                            , message: message
+                        };
+                        $timeout.cancel(alertTimeout);
+                        alertTimeout = $timeout(function () {
+                            $scope.alert.show = false;
+                        }, timeout || 2500);
+                    }
+
+                }
             };
         });
 }());
-
-/*angular.module('psNesApp').controller('RegisterController', function ($scope, alert, $auth) {
+/*
+angular.module('psNesApp').controller('RegisterController', function ($scope, alert, $auth) {
 	
 			.then(function (res) {
 				alert('success', 'Account Created!', 'Welcome, ' + res.data.user.email + '! Please email activate your account in the next several days.');

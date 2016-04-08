@@ -1,4 +1,25 @@
-(function(){
+var registerService =  function ($http) {
+    var url = '/';
+    var user = {};
+    $http.post(url, user)
+        .success(function (res) {
+            console.log("Yey, champ");
+        })
+        .error(function (err) {
+            alert('warning', 'hih, yops?', 'try again');
+        });
+};
+
+module.factory('registerService', function () {
+    return registerService;
+});
+
+
+
+
+
+
+/*(function(){
 
     'use strict';
     
@@ -27,7 +48,7 @@ function alert($rootScope, $timeout){
 }());
     
     
-    /*(function() {
+  (function() {
   'use strict';
   
   angular.module('adminApp', [])
