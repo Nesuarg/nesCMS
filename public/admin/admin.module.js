@@ -3,124 +3,71 @@
 
     angular
         .module('adminApp', ['ui.router'])
-        .config(function ($urlRouterProvider, $stateProvider) {
+        .config(function ($urlRouterProvider, $stateProvider, $httpProvider) {
             $urlRouterProvider.otherwise('/')
             $stateProvider
                 .state('dashboard', {
-                    url: '/',
-                    templateUrl: 'dashboard/dashboard.view.html',
-                    controller: 'dashboardController'
-                })
-                .state('content', {
-                    url: '/content',
-                    templateUrl: 'content/content.view.html'
-                })
-                .state('users', {
-                    url: '/users',
-                    templateUrl: 'users/users.view.html'
-                })
-
-            .state('register', {
-                url: '/register',
-                templateUrl: 'register/register.view.html',
-                controller: 'registerCtrl'
-
-            });
-
-
-        });
-    /*.directive('validateMatch', function () {
-            return {
-                require: 'ngModel'
-                , link: function (scope, element, attrs, ngModelCtrl) {
-                    function validateEqual(value) {
-                        var valid = (value === scope.$eval(attrs.validateMatch));
-                        ngModelCtrl.$setValidity('equal', valid);
-                        return valid ? value : undefined;
-                    }
-
-                    ngModelCtrl.$parsers.push(validateEqual);
-                    ngModelCtrl.$formatters.push(validateEqual);
-
-                    scope.$watch(attrs.validateMatch, function () {
-                        ngModelCtrl.$setViewValue(ngModelCtrl.viewValue);
-                    });
-                }
-            };
-    });*/
-    
-    
-    
-    
-    
-    
-    /*angular
-        .module("admin", ["admin.dashboard", "admin.content", "admin.users", "admin.register"
-            , "ngResource", "ngRoute"])
-        .config(function ($routeProvider) {
-            $routeProvider
-                .when('/users/', {
-                    templateUrl: './users/users.view.html'
-                    , controller: 'usersController'
-                })
-                .when('/content/item/:id', {
-                    templateUrl: './content/contentItem.view.html'
-                    , controller: 'contentItemController'
-                })
-                .when('/content/item/', {
-                    templateUrl: './content/contentItem.view.html'
-                    , controller: 'contentItemController'
-                })
-                .when('/content/', {
-                    templateUrl: './content/content.view.html'
-                    , controller: 'contentController'
-                })
-                .when('/login/', {
-                    templateUrl: './login/login.view.html'
-                    , controller: 'loginController'
-                })
-                .when('register/', {
-                    templateUrl: './register/register.view.html'
-                    , controller: 'registerController'
-
-                })
-                .when("/", {
-                    templateUrl: './dashboard/dashboard.view.html'
+                    url: '/'
+                    , templateUrl: 'dashboard/dashboard.view.html'
                     , controller: 'dashboardController'
                 })
-                .otherwise({
-                    redirectTo: '/'
-                });
+                .state('content', {
+                    url: '/content'
+                    , templateUrl: 'content/content.view.html'
+                })
+                .state('users', {
+                    url: '/users'
+                    , templateUrl: 'users/users.view.html'
+                })
+                .state('login', {
+                    url: '/login'
+                    , templateUrl: 'login/login.view.html'
+                    , controller: 'loginController'
 
-        }) // end of config()
+                })
+                .state('register', {
+                    url: '/register'
+                    , templateUrl: 'register/register.view.html'
+                    , controller: 'registerCtrl'
+
+                });
+            var checkLoggedIn = function ($q, $timeout, $http, $location, $rootScope) {
+                var deferred = $q.defer();
+
+                // ajax call to check if the user is logged in
+                $http.get('/loggedin').success(function (user) {
+                    //auth
+                    if (user !== '0')
+                        deferred.resolve();
+                    else {
+                        $rootScope.message = 'need to log in';
+                        $location.url('/login');
+                    }
+                });
+                return deferred.promise;
+            };
+            $httpProvider.interceptors.push(function ($q, $location) {
+                return {
+                    response: function (response) {
+                        // do something on success
+                        return response;
+                    }
+                    , responseError: function (response) {
+                        if (response.status === 401)
+                            $location.url('/login');
+                        return $q.reject(response);
+                    }
+                };
+            });
+
+        })
         .run(function ($rootScope, $http) {
             $rootScope.message = '';
 
-            // to logout on any page.
+            // Logout function is available in any pages
             $rootScope.logout = function () {
                 $rootScope.message = 'Logged out.';
                 $http.post('/logout');
             };
-        })
-        .directive('validateMatch', function () {
-            return {
-                require: 'ngModel'
-                , link: function (scope, element, attrs, ngModelCtrl) {
-                    function validateEqual(value) {
-                        var valid = (value === scope.$eval(attrs.validateMatch));
-                        ngModelCtrl.$setValidity('equal', valid);
-                        return valid ? value : undefined;
-                    }
-
-                    ngModelCtrl.$parsers.push(validateEqual);
-                    ngModelCtrl.$formatters.push(validateEqual);
-
-                    scope.$watch(attrs.validateMatch, function () {
-                        ngModelCtrl.$setViewValue(ngModelCtrl.viewValue);
-                    });
-                }
-            };
-        });*/
-
-
+        });
 }());

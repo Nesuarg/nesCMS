@@ -1,13 +1,27 @@
-(function() {
-  "use strict";
+"use strict";
   
-  function loginController($scope) {
-    
-    
-  }
+  angular.module('adminApp')
+      .controller('loginController', function($scope, $rootScope, $http, $location) {
+  // This object will be filled by the form
+  $scope.user = {};
 
-  angular
-    .module("adminApp")
-    .controller("loginController", loginController);
-  
-}())
+  // Register the login() function
+  $scope.login = function(){
+    $http.post('/login', {
+      email: $scope.user.email,
+      password: $scope.user.password,
+    })
+    .success(function(user){
+      // No error: authentication OK
+      $rootScope.message = 'Authentication successful!';
+      $location.url('/dashboard');
+    })
+    .error(function(){
+      // Error: authentication failed
+      $rootScope.message = 'Authentication failed.';
+      $location.url('/login');
+        console.log("asda");
+    });
+  };
+});
+

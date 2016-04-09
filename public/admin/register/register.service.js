@@ -10,7 +10,7 @@ var registerService =  function ($http) {
         });
 };
 
-module.factory('registerService', function () {
+angular.module('adminApp').factory('registerService', function () {
     return registerService;
 });
 
