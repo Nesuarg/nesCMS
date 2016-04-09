@@ -29,7 +29,7 @@
         </nav>
         <div ui-view></div>
 
-        <div class="alert alert-{{alert.type}} animated my-alert" ng-class="{'bounce': alert.show, 'bounce': !alert.show, 'alert-hidden': !alert.hasBeenShown}"><strong>{{alert.title}}</strong>{{alert.message}}</div>
+        <div class="alert alert-{{alert.type}} animated my-alert" ng-class="{'zoomIn': alert.show, 'zoomOut': !alert.show, 'alert-hidden': !alert.hasBeenShown}"><strong>{{alert.title}}</strong>{{alert.message}}</div>
 
     </div>
 
@@ -44,7 +44,7 @@
     <!-- module -->
     <script src="admin.module.js"></script>
     <script src="directives/validateMatch.js"></script>
-    <script src="services/admin.services.js"></script>
+    <script src="services/alert.services.js"></script>
 
     <!-- Dashboard -->
     <script src="dashboard/dashboard.controller.js"></script>

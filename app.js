@@ -20,11 +20,14 @@ var admin = require('./routes/admin');
 var users = require('./routes/users');
 var content = require('./routes/content');
 var auth = require('./routes/auth');
+var register = require('./routes/register');
 
 //flyttes til auth config
 
 
 var app = express();
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -53,6 +56,7 @@ app.use('/api/admin', admin);
 app.use('/api/admin/users', users);
 app.use('/api/content', content);
 app.use('/api/auth', auth);
+app.use('/api/register', register);
 
 
 // PassportJS Configuration

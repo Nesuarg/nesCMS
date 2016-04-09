@@ -1,36 +1,28 @@
-(function () {
-
-    'use strict';
+'use strict';
 
 
     angular
         .module('adminApp')
-        .controller('registerCtrl', function ($scope, alert) {
-
-            $scope.submit = function () {
-
-
-                function alert($scope, $timeout) {
-
-                    var alertTimeout;
-                    return function (type, title, message, timeout) {
-                        $scope.alert = {
-                            hasBeenShown: true
-                            , show: true
-                            , type: type
-                            , title: title
-                            , message: message
-                        };
-                        $timeout.cancel(alertTimeout);
-                        alertTimeout = $timeout(function () {
-                            $scope.alert.show = false;
-                        }, timeout || 2500);
-                    }
-
-                }
+        .controller('registerCtrl', function ($scope, $rootScope, $http, alert) {
+        $scope.submit = function(){
+            
+            var url = 'http://localhost:3000/admin/api/register';
+            var user = {
+                email: $scope.email,
+                password: $scope.password
             };
-        });
-}());
+            
+            $http.post(url, user)
+            .success(function(res){
+                alert('success', 'OK', 'you are now registered')
+            })
+            .error(function(err){
+                alert('warning', 'OPPS', 'coudnt do want u want')
+            });
+        } 
+    });
+
+ 
 /*
 angular.module('psNesApp').controller('RegisterController', function ($scope, alert, $auth) {
 	
