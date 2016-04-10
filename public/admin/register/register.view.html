@@ -1,10 +1,26 @@
+<div class="row col-md-4 col-md-offset-4">
     <form ng-submit="submit()" name="register" class="form-signin" novalidate>
         <h1> Register </h1>
-        <input name="email" ng-model="email" type="email" class="form-control" placeholder="Email address" required>
+
+        <div class="form-group">
+            <input name="email" ng-model="email" type="email" class="form-control" placeholder="Email address" required>
+        </div>
+
         <p class="help-block" ng-show="register.email.$dirty && register.email.$invalid">please place a real emailadress</p>
-        <input name="password" ng-model="password" type="password" class="form-control" placeholder="Password" required>
-        <input name="passwordConfirm" ng-model="passwordConfirm" type="password" class="form-control" placeholder="Confirm Password" validate-match='password'>
+        <div class="form-group">
+            <input name="password" ng-model="password" type="password" class="form-control" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+            <input name="passwordConfirm" ng-model="passwordConfirm" type="password" class="form-control" placeholder="Confirm Password" validate-match='password'>
+        </div>
         <p class="help-block" ng-show="register.passwordConfirm.$dirty && register.passwordConfirm.$invalid"> please match the passwords!</p>
-        <button ng-disabled="register.$invalid" class=" btn btn-lg btn-primary btn-block " type="submit ">
-            Register </button>
+        <div class="form-group">
+            <button ng-disabled="register.$invalid" class=" btn btn-lg btn-primary btn-block " type="submit ">
+                Register </button>
+        </div>
     </form>
+     <!-- make to redirect to last page -->
+    <buttom onclick="window.location.href='/'" class=" btn btn-lg btn-primary btn-block ">
+        Cancel </buttom>
+   
+</div>
