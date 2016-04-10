@@ -1,12 +1,22 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    margin-top: 50px;
 }
 
+.container-fluid {
+}
+
+.container {}
+
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
 .alert-hidden {
     visibility: : hidden;
+}
+
+.alert {
+    margin-top: 20px;
+    padding: 15px, auto, 15px;
 }

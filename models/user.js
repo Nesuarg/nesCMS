@@ -2,12 +2,28 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
 
-var userSchema = new Schema({
-    email: String,
-    password: String,
-    role: String
+var user = new Schema({
+    email: String
+    , password: String
+    , role: String
 });
 
-userSchema.plugin(passportLocalMongoose);
+user.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model('User', userSchema , "user");
+user.remove({}, function (err, data) {
+    User.create({
+        username: "derper"
+        , password: "1234"
+        , email: "derp@memes.com"
+    , }, {
+        username: "Kappa"
+        , password: "4321"
+        , name: "Kappa de Kappa"
+    , }, {
+        username: "BrokeBack"
+        , password: "1111"
+        , name: "Broke back"
+    , })
+})
+
+module.exports = mongoose.model('User', user, "user");

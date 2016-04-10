@@ -6,7 +6,7 @@
         .controller('registerCtrl', function ($scope, $rootScope, $http, alert) {
         $scope.submit = function(){
             
-            var url = 'http://localhost:3000/admin/api/register';
+            var url = 'http://localhost:3000/api/users/:id';
             var user = {
                 email: $scope.email,
                 password: $scope.password
@@ -14,10 +14,10 @@
             
             $http.post(url, user)
             .success(function(res){
-                alert('success', 'OK', 'you are now registered')
+                alert('success', 'OK ', 'You are now registered')
             })
             .error(function(err){
-                alert('warning', 'OPPS', 'coudnt do want u want')
+                alert('warning', 'OPPS ', 'coudnt register you as an user')
             });
         } 
     });

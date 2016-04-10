@@ -3,39 +3,41 @@
 <head>
     <title>NesCMS</title>
     <link rel="stylesheet" href="../libs/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../stylesheets/theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/theme.min.css">
     <link rel="stylesheet" href="../libs/animate.css/animate.css">
     <link rel="stylesheet" href="../stylesheets/style.css">
 </head>
 
 <body ng-app="adminApp">
-    <div class="container" ng-cloak>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid" ng-cloak>
 
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li ui-sref-active="active"><a ui-sref="dashboard">Dashboard</a></li>
-                        <li ui-sref-active="active"><a ui-sref="content">Content</a></li>
-                        <li ui-sref-active="active"><a ui-sref="users">Users</a></li>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li ui-sref-active="active"><a ui-sref="dashboard">Dashboard</a></li>
+                    <li ui-sref-active="active"><a ui-sref="content">Content</a></li>
+                    <li ui-sref-active="active"><a ui-sref="users">Users</a></li>
 
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a ui-sref-active="active" ui-sref="login">log in</a></li>
-                        <li><a ui-sref-active="active" ui-sref="register">Register</a></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a ui-sref-active="active" ui-sref="login">log in</a></li>
+                    <li><a ui-sref-active="active" ui-sref="register">Register</a></li>
+                </ul>
             </div>
-            <!-- /.container-fluid -->
-        </nav>
-        <div ui-view></div>
+            <!-- /.navbar-collapse -->
+
+    </nav>
+
+    <div ui-view class="container-fluid"></div>
     <!-- alert.type is to make either alert-danger or success. have to make this function -->
-        <div class="alert alert-{{alert.type}} animated alert-danger" ng-class="{'zoomIn': alert.show, 'zoomOut': !alert.show, 'alert-hidden': !alert.hasBeenShown}"><strong>{{alert.title}}</strong>{{alert.message}}</div>   
+    <div class="col-md-4 col-md-offset-4 alert alert-{{alert.type}} animated" ng-class="{'zoomIn': alert.show, 'zoomOut': !alert.show, 'alert-hidden': !alert.hasBeenShown}"><strong>{{alert.title}}</strong>{{alert.message}}</div>
 
     </div>
+    <!-- /.container-fluid -->
+
+
 
 
     <!-- scripts
@@ -56,6 +58,7 @@
     <script src="content/content.controller.js"></script>
     <!-- Users -->
     <script src="users/users.controller.js"></script>
+    <script src="users/users.service.js"></script>
     <!-- login -->
     <script src="login/login.controller.js"></script>
     <!-- Register -->
