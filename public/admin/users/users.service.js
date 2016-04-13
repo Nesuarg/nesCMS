@@ -30,5 +30,5 @@
   }
   
   angular
-    .module("admin.users")
+    .module("adminApp")
     .factory("usersService", usersService);

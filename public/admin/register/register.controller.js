@@ -1,29 +1,46 @@
 'use strict';
 
 
-    angular
-        .module('adminApp')
-        .controller('registerCtrl', function ($scope, $rootScope, $http, alert) {
-        $scope.submit = function(){
-            
-            var url = 'http://localhost:3000/api/users/:id';
+angular
+    .module('adminApp')
+    .controller('registerCtrl', function ($scope, $rootScope, $http, alert, $resource) {
+        $scope.submit = function () {
+
+
             var user = {
-                email: $scope.email,
-                password: $scope.password
+                username: $scope.username
+                , password: $scope.password
             };
-            
-            $http.post(url, user)
-            .success(function(res){
+
+            console.log(JSON.stringify(user));
+
+            $http({
+                method: 'POST'
+                , url: '/api/register',
+                data: user
+            }).then(function successCallback(res) {
                 alert('success', 'OK ', 'You are now registered')
-            })
-            .error(function(err){
-                alert('warning', 'OPPS ', 'coudnt register you as an user')
+            }, function errorCallback(res) {
+                alert('danger', 'OPPS ', 'coudnt register you as an user')
             });
-        } 
+
+
+           
+        }
     });
 
- 
+
 /*
+ $http.post(url, user)
+                .success(function (res) {
+                    alert('success', 'OK ', 'You are now registered')
+                })
+                .error(function (err) {
+                    alert('danger', 'OPPS ', 'coudnt register you as an user')
+                });
+
+
+
 angular.module('psNesApp').controller('RegisterController', function ($scope, alert, $auth) {
 	
 			.then(function (res) {

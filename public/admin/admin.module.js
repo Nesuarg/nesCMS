@@ -2,7 +2,7 @@
     "use strict";
 
     angular
-        .module('adminApp', ['ui.router'])
+        .module('adminApp', ['ui.router', 'ngResource'])
         .config(function ($urlRouterProvider, $stateProvider, $httpProvider) {
             $urlRouterProvider.otherwise('/')
             $stateProvider

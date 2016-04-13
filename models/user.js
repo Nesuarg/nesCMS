@@ -1,16 +1,19 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var passportLocalMongoose = require('passport-local-mongoose');
+var bcrypt = require('bcrypt-nodejs')
+//var passportLocalMongoose = require('passport-local-mongoose');
 
-var user = new Schema({
-    email: String
+var user = mongoose.Schema({
+    username: String
     , password: String
     , role: String
 });
 
-user.plugin(passportLocalMongoose);
+//user.methods.generateHash = function(password){
+//    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+//};
 
-user.remove({}, function (err, data) {
+/*user.remove({}, function (err, data) {
     User.create({
         username: "derper"
         , password: "1234"
@@ -24,6 +27,6 @@ user.remove({}, function (err, data) {
         , password: "1111"
         , name: "Broke back"
     , })
-})
+})*/
 
 module.exports = mongoose.model('User', user, "user");

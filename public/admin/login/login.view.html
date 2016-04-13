@@ -2,13 +2,12 @@
     <form ng-submit="submit()" name="login" class="form-signin" novalidate>
         <h1> Hello </h1>
         <div class="form-group">
-            <input name="email" ng-model="user.email" type="email" class="form-control" placeholder="Email address" required>
+            <input name="username" type="text" class="form-control" placeholder="username" ng-model="loginForm.username" required>
         </div>
-        <p class="help-block" ng-show="register.email.$dirty && register.email.$invalid">please place a real emailadress</p>
         <div class="form-group">
-            <input name="password" ng-model="user.password" type="password" class="form-control" placeholder="Password" required> </div>
+            <input name="password" type="password" class="form-control" placeholder="Password" ng-model="loginForm.password" required> </div>
         <div class="form-group">
-            <button class=" btn btn-lg btn-primary btn-block " type="submit ">
+            <button class=" btn btn-lg btn-primary btn-block " type="submit" ng-click="submit(username, password)">
                 log in </button>
         </div>
     </form>

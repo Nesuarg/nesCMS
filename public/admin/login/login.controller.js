@@ -1,27 +1,29 @@
 "use strict";
-  
-  angular.module('adminApp')
-      .controller('loginController', function($scope, $rootScope, $http, $location) {
-  // This object will be filled by the form
-  $scope.user = {};
 
-  // Register the login() function
-  $scope.login = function(){
-    $http.post('/login', {
-      email: $scope.user.email,
-      password: $scope.user.password,
-    })
-    .success(function(user){
-      // No error: authentication OK
-      $rootScope.message = 'Authentication successful!';
-      $location.url('/dashboard');
-    })
-    .error(function(){
-      // Error: authentication failed
-      $rootScope.message = 'Authentication failed.';
-      $location.url('/login');
-        console.log("asda");
+angular.module('adminApp')
+    .controller('loginController', function ($scope, $location, authService) {
+        // This object will be filled by the form
+        $scope.login = function () {
+            // initial values
+            $scope.error = false;
+            $scope.disabled = true;
+
+            // call login from service
+            AuthService.login($scope.loginForm.username, $scope.loginForm.password)
+                // handle success
+                .then(function () {
+                    $location.path('/');
+                    $scope.disabled = false;
+                    $scope.loginForm = {};
+                    console.log("logged in");
+                })
+                // handle error
+                .catch(function () {
+                    $scope.error = true;
+                    $scope.errorMessage = "Invalid username and/or password";
+                    $scope.disabled = false;
+                    $scope.loginForm = {};
+                });
+        };
+
     });
-  };
-});
-
