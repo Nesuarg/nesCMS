@@ -3,12 +3,7 @@ var router = express.Router();
 var passport = require('passport')
 var Account = require('../models/user');
 
-var auth = function (req, res, next) {
-    if (!req.isAuthenticated())
-        res.send(401);
-    else
-        next();
-};
+
 
 /*router.get('/users', auth, function(req, res){
   res.send([{name: "user1"}, {name: "user2"}]);

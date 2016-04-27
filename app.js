@@ -19,7 +19,6 @@ db.once('open', function (callback) {
 var admin = require('./routes/admin');
 var users = require('./routes/users');
 var content = require('./routes/content');
-var auth = require('./routes/auth');
 var register = require('./routes/register');
 var login = require('./routes/login');
 
@@ -56,7 +55,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/admin/', admin);
 app.use('/api/admin/users', users);
 app.use('/api/content', content);
-app.use('/api/auth', auth);
 app.use('/api/register', register);
 app.use('/api/login', login);
 
@@ -95,6 +93,13 @@ passport.deserializeUser(function (id, done) {
         done(err, user);
     });
 });
+
+var auth = function (req, res, next) {
+    if (!req.isAuthenticated())
+        res.send(401);
+    else
+        next();
+};
 
 
 

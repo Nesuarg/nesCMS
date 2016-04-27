@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('adminApp').factory('authService', ['$q', '$timeout', '$http'
+angular.module('adminApp')
+    .factory('authService', ['$q', '$timeout', '$http'
                                   
     , function ($q, $timeout, $http) {
         var user = null;
