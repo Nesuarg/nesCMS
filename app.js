@@ -9,6 +9,8 @@ var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
 var mongoose = require('mongoose');
 var dbname = 'nesData';
+var User = require('./models/user');
+var authConfig = require('./config/authConfig')
 
 mongoose.connect('mongodb://localhost/' + dbname);
 var db = mongoose.connection;
@@ -16,10 +18,12 @@ db.on('error', console.error);
 db.once('open', function (callback) {
     console.log('MongoDB connection established to ' + dbname);
 });
+
+
 var admin = require('./routes/admin');
 var users = require('./routes/users');
 var content = require('./routes/content');
-var register = require('./routes/register');
+var auth = require('./routes/auth');
 var login = require('./routes/login');
 
 //flyttes til auth config
@@ -55,7 +59,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/admin/', admin);
 app.use('/api/admin/users', users);
 app.use('/api/content', content);
-app.use('/api/register', register);
+app.use('/api/auth', auth);
 app.use('/api/login', login);
 
 
@@ -65,20 +69,18 @@ passport.use(new LocalStrategy(
     function (username, password, done) {
         User.findOne({
             username: username
+            
         }, function (err, user) {
+            console.log(user)
             if (err) {
                 return done(err);
             }
             if (!user) {
                 return done(null, false, {
-                    message: 'Incorrect username.'
+                    message: 'Incorrect username or password.'
                 });
             }
-            if (!user.validPassword(password)) {
-                return done(null, false, {
-                    message: 'Incorrect password.'
-                });
-            }
+
             return done(null, user);
         });
     }
@@ -93,13 +95,6 @@ passport.deserializeUser(function (id, done) {
         done(err, user);
     });
 });
-
-var auth = function (req, res, next) {
-    if (!req.isAuthenticated())
-        res.send(401);
-    else
-        next();
-};
 
 
 

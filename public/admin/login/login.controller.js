@@ -1,21 +1,20 @@
 "use strict";
 
 angular.module('adminApp')
-    .controller('loginController', function ($scope, $location, authService) {
-        // This object will be filled by the form
-        $scope.login = function () {
+    .controller('loginController', function ($scope, $location, authService) {  
+    // This object will be filled by the form
+            $scope.submit = function () {
             // initial values
             $scope.error = false;
             $scope.disabled = true;
 
             // call login from service
-            AuthService.login($scope.loginForm.username, $scope.loginForm.password)
+            authService.login($scope.loginForm.username, $scope.loginForm.password)
                 // handle success
                 .then(function () {
                     $location.path('/');
                     $scope.disabled = false;
                     $scope.loginForm = {};
-                    console.log("logged in");
                 })
                 // handle error
                 .catch(function () {
@@ -24,6 +23,6 @@ angular.module('adminApp')
                     $scope.disabled = false;
                     $scope.loginForm = {};
                 });
-        };
+            };
 
     });

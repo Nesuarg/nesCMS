@@ -10,7 +10,7 @@ router.get('/:id', function(req, res, next) {
   });
 });
   
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res, next, auth) {
   User.find(function(err, data) {
     if(err) { console.error(err); return }
     res.json(data);

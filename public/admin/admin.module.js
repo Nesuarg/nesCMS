@@ -6,10 +6,15 @@
         .config(function ($urlRouterProvider, $stateProvider, $httpProvider) {
             $urlRouterProvider.otherwise('/')
             $stateProvider
-                .state('dashboard', {
+                .state('main', {
                     url: '/'
+                    , templateUrl: 'main/main.view.html'
+                })
+                .state('dashboard', {
+                    url: '/dashboard'
                     , templateUrl: 'dashboard/dashboard.view.html'
                     , controller: 'dashboardController'
+
                 })
                 .state('content', {
                     url: '/content'
@@ -30,12 +35,18 @@
                     , templateUrl: 'register/register.view.html'
                     , controller: 'registerCtrl'
 
+                })
+                .state('logout', {
+                    url: '/logout'
+                    , controller: function ($scope, $route) {
+                        $route.reload()
+                    }
                 });
             var checkLoggedIn = function ($q, $timeout, $http, $location, $rootScope) {
                 var deferred = $q.defer();
 
                 // ajax call to check if the user is logged in
-                $http.get('/loggedin').success(function (user) {
+                $http.get('api/auth/loggedin').success(function (user) {
                     //auth
                     if (user !== '0')
                         deferred.resolve();
@@ -67,7 +78,7 @@
             // Logout function is available in any pages
             $rootScope.logout = function () {
                 $rootScope.message = 'Logged out.';
-                $http.post('/logout');
+                $http.post('api/auth/logout');
             };
         });
 }());

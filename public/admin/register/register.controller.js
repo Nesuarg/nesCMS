@@ -16,7 +16,7 @@ angular
 
             $http({
                 method: 'POST'
-                , url: '/api/register',
+                , url: '/api/auth/register',
                 data: user
             }).then(function successCallback(res) {
                 alert('success', 'OK ', 'You are now registered')

@@ -43,7 +43,7 @@ angular.module('adminApp')
             var deferred = $q.defer();
 
             // send a post request to the server
-            $http.post('/api/login', {
+            $http.post('/api/auth/login', {
                     username: username
                     , password: password
                 })
@@ -74,7 +74,7 @@ angular.module('adminApp')
             var deferred = $q.defer();
 
             // send a get request to the server
-            $http.get('/api/logout')
+            $http.get('/api/auth/logout')
                 // handle success
                 .success(function (data) {
                     user = false;
@@ -97,7 +97,7 @@ angular.module('adminApp')
             var deferred = $q.defer();
 
             // send a post request to the server
-            $http.post('/api/register', {
+            $http.post('/api/auth/register', {
                     username: username
                     , password: password
                 })
