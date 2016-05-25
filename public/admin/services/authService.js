@@ -22,7 +22,7 @@ angular.module('adminApp')
         }
 
         function getUserStatus() {
-            $http.get('/api/user/status')
+            $http.get('/api/users/status')
                 // handle success
                 .success(function (data) {
                     if (data.status) {

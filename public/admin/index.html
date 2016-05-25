@@ -22,14 +22,13 @@
                     <li ui-sref-active="active"><a ui-sref="users">Users</a></li>
 
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul ng-show="!loggedIn" class="nav navbar-nav navbar-right">
                     <li><a ui-sref-active="active" ui-sref="login">log in</a></li>
                     <li><a ui-sref-active="active" ui-sref="register">Register</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul ng-show="loggedIn" class="nav navbar-nav navbar-right">
                     <li><a ui-sref-active="active" ng-click="logout()">log out</a></li>
                 </ul>
-                <span>    {{message}}</span>
 
             </div>
             <!-- /.navbar-collapse -->
@@ -59,15 +58,16 @@
     <script src="directives/validateMatch.js"></script>
     <script src="services/authService.js"></script>
     <script src="services/alert.services.js"></script>
+        <script src="services/userService.js"></script>
     <!--<scropt src="services/register.service.js"></scropt>-->
 
     <!-- Dashboard -->
+    <script src="main/main.controller.js"></script>
     <script src="dashboard/dashboard.controller.js"></script>
     <!-- Content -->
     <script src="content/content.controller.js"></script>
     <!-- Users -->
     <script src="users/users.controller.js"></script>
-    <script src="users/users.service.js"></script>
     <!-- login -->
     <script src="login/login.controller.js"></script>
     <!-- Register -->

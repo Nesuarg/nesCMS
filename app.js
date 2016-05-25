@@ -57,7 +57,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/admin/', admin);
-app.use('/api/admin/users', users);
+app.use('/api/users', users);
 app.use('/api/content', content);
 app.use('/api/auth', auth);
 app.use('/api/login', login);

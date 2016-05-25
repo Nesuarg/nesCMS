@@ -5,8 +5,10 @@
         .module("adminApp")
         .controller("dashboardController", function() {
         
+        
         var vm = this;
         vm.title = 'Dashboard';
+        
     });
 
 

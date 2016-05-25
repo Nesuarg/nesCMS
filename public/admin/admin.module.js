@@ -9,6 +9,7 @@
                 .state('main', {
                     url: '/'
                     , templateUrl: 'main/main.view.html'
+                    , controller: "mainController"
                 })
                 .state('dashboard', {
                     url: '/dashboard'
@@ -74,11 +75,14 @@
         })
         .run(function ($rootScope, $http) {
             $rootScope.message = '';
+            $rootScope.loggedIn = false;
 
             // Logout function is available in any pages
             $rootScope.logout = function () {
+                console.log('try to log out')
                 $rootScope.message = 'Logged out.';
                 $http.post('api/auth/logout');
+                
             };
         });
 }());

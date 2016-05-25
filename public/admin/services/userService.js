@@ -2,7 +2,7 @@
     
   function usersService($http, $resource){
     
-    var User = $resource("/api/admin/users/:id", {id: '@_id' });
+    var User = $resource("/api/users/:id", {id: '@_id' });
 
     var getUser = function(id){
       return User.get({id: id}).$promise;
