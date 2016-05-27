@@ -12,7 +12,7 @@ var dbname = 'nesData';
 var User = require('./models/user');
 var authConfig = require('./config/authConfig')
 
-mongoose.connect('mongodb://localhost/' + dbname);
+mongoose.connect('mongodb://<nesdata>:<hellonesuarg>@ds017193.mlab.com:17193/nescms' + dbname);
 var db = mongoose.connection;
 db.on('error', console.error);
 db.once('open', function (callback) {
@@ -38,6 +38,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(express.static(__dirname + '/public/admin'));
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

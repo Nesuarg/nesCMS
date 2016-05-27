@@ -6,6 +6,7 @@
         .controller("mainController", function($rootScope, $scope) {
             console.log($rootScope.loggedIn)
             
+            
         
     });
 

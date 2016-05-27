@@ -9,7 +9,7 @@
                 .state('main', {
                     url: '/'
                     , templateUrl: 'main/main.view.html'
-                    , controller: "mainController"
+                    , controller: 'mainController'
                 })
                 .state('dashboard', {
                     url: '/dashboard'
@@ -24,6 +24,7 @@
                 .state('users', {
                     url: '/users'
                     , templateUrl: 'users/users.view.html'
+                    , controller: 'usersController'
                 })
                 .state('login', {
                     url: '/login'

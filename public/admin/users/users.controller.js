@@ -1,13 +1,14 @@
 "use strict";
 
 angular
-    .module("admin.users", [])
-    .controller("usersController", function usersController($scope, userService) {
-        var getUser = function () {
-            userService.getUsers()
-                .then(function (users) {
-                    $scope.users = users;
-                    });
-            };
+    .module("adminApp")
+    .controller("usersController", function ($scope, usersService) {
+        $scope.user = null;
+    
+        usersService.user($scope.getUser)
+            .then(function(){
+            
+        })
+
 
     });
